@@ -11,22 +11,39 @@ export class DialogComponent implements OnInit {
 
   constructor(public dialog: MatDialog) {}
 
-  selectedItem = '';
+  selectedItemA = '';
+  selectedItemB = '';
+  itemType = '';
+  dataA = [
+    {'label': 'item01', 'value': 'itm01'},
+    {'label': 'item02', 'value': 'itm02'},
+    {'label': 'item03', 'value': 'itm03'},
+  ];
 
-  openDialog() {
+  dataB = [
+    {'label': 'B-01', 'value': 'B01'},
+    {'label': 'B-02', 'value': 'B02'},
+    {'label': 'B-03', 'value': 'B03'},
+  ];
+
+  openDialog(type) {
     const dialogRef  = this.dialog.open(DialogDetailComponent, {
       data: {
-        items: [
-          {'label': 'item01', 'value': 'itm01'},
-          {'label': 'item02', 'value': 'itm02'},
-          {'label': 'item03', 'value': 'itm03'},
-        ]
+        type: type,
+        items: type === 'A' ? this.dataA : type === 'B' ? this.dataB : null
       }
     });
 
-    dialogRef.afterClosed().subscribe(selectedItem => {
+    dialogRef.afterClosed().subscribe(res => {
       console.log('The dialog was closed');
-      this.selectedItem = selectedItem;
+      this.itemType = '';
+      this.itemType = res.type;
+
+      if(res.type === 'A') {
+        this.selectedItemA = res.selectedItem;
+      } else if (res.type === 'B') {
+        this.selectedItemB = res.selectedItem;
+      }
     });
   }
 

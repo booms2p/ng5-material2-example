@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { DialogComponent } from './dialog/dialog.component';
 import { DialogDetailComponent } from './dialog/dialog-detail/dialog-detail.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DialogDetailComponent } from './dialog/dialog-detail/dialog-detail.comp
     MatDialogModule,
     MatButtonModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,9 +1,31 @@
-<p>
-  dialog works!
-</p>
-<br>
-<button mat-raised-button (click)="openDialog()">Open dialog</button>
-<br><br>
-<div *ngIf="selectedItem">
-  Selected: {{selectedItem | json}}
+<div fxLayout="row">
+  <h1>
+    Dialog Example
+  </h1>
 </div>
+
+<br>
+<div fxLayout="row">
+  <div fxFlex="50" align="center">
+    <div>
+        <button mat-raised-button (click)="openDialog('A')">Open dialog A</button>
+    </div>
+
+    <br><br>
+    <div *ngIf="selectedItemA">
+      Selected: {{selectedItemA | json}}
+    </div>
+  </div>
+  <div fxFlex="50" align="center">
+    <div>
+      <button mat-raised-button (click)="openDialog('B')">Open dialog B</button>
+    </div>
+
+    <br><br>
+    <div *ngIf="selectedItemB">
+      Selected: {{selectedItemB | json}}
+    </div>
+  </div>
+</div>
+
+

@@ -9,13 +9,17 @@ import { Component, OnInit, Inject } from '@angular/core';
 export class DialogDetailComponent implements OnInit {
 
   selectedItem = '';
+  res = {type: '', selectedItem: ''};
 
   constructor(
     public dialogRef: MatDialogRef<DialogDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-  confirmDialog(data): void {
-    this.dialogRef.close(data);
+  confirmDialog(selected): void {
+    this.res.type = this.data.type;
+    this.res.selectedItem = selected;
+
+    this.dialogRef.close(this.res);
   }
 
   ngOnInit() {
