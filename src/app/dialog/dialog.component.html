@@ -1,0 +1,9 @@
+<p>
+  dialog works!
+</p>
+<br>
+<button mat-raised-button (click)="openDialog()">Open dialog</button>
+<br><br>
+<div *ngIf="selectedItem">
+  Selected: {{selectedItem | json}}
+</div>
