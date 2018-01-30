@@ -10,6 +10,7 @@ export class DialogDetailComponent implements OnInit {
 
   selectedItem = '';
   res = {type: '', selectedItem: ''};
+  dataList = [];
 
   constructor(
     public dialogRef: MatDialogRef<DialogDetailComponent>,
@@ -23,6 +24,12 @@ export class DialogDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dataList = [];
+    for (const item of this.data.items) {
+      if (item.label && item.value) {
+        this.dataList.push(item);
+      }
+    }
   }
 
 }

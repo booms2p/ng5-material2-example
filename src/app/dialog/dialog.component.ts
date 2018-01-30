@@ -57,11 +57,11 @@ export class DialogComponent implements OnInit {
     dialogRef.afterClosed().subscribe(res => {
       // console.log('The dialog was closed');
       this.itemType = '';
-      this.itemType = res.type ? res.type : '';
+      this.itemType = res ? res.type : '';
 
-      if (res.type === 'A') {
+      if (res && res.type === 'A') {
         this.selectedItemA = res.selectedItem;
-      } else if (res.type === 'B') {
+      } else if (res && res.type === 'B') {
         this.selectedItemB = res.selectedItem;
       }
     });
