@@ -51,7 +51,8 @@ export class DialogComponent implements OnInit {
       data: {
         type: type,
         items: type === 'A' ? this.dataA : type === 'B' ? this.dataB : null
-      }
+      },
+      disableClose: true
     });
 
     dialogRef.afterClosed().subscribe(res => {
