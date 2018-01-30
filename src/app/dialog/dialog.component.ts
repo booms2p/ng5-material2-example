@@ -14,6 +14,9 @@ export class DialogComponent implements OnInit {
   selectedItemA = '';
   selectedItemB = '';
   itemType = '';
+
+
+
   dataA = [
     {'label': 'item01', 'value': 'itm01'},
     {'label': 'item02', 'value': 'itm02'},
@@ -26,6 +29,23 @@ export class DialogComponent implements OnInit {
     {'label': 'B-03', 'value': 'B03'},
   ];
 
+  addMember(type) {
+    const template = {'label': '', 'value': ''};
+    if (type === 'A') {
+      this.dataA.push(template);
+    } else if (type === 'B') {
+      this.dataB.push(template);
+    }
+  }
+
+  removeMember(type, index) {
+    if (type === 'A') {
+      this.dataA.splice(index, 1);
+    } else if (type === 'B') {
+      this.dataB.splice(index, 1);
+    }
+  }
+
   openDialog(type) {
     const dialogRef  = this.dialog.open(DialogDetailComponent, {
       data: {
@@ -35,11 +55,11 @@ export class DialogComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(res => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
       this.itemType = '';
-      this.itemType = res.type;
+      this.itemType = res.type ? res.type : '';
 
-      if(res.type === 'A') {
+      if (res.type === 'A') {
         this.selectedItemA = res.selectedItem;
       } else if (res.type === 'B') {
         this.selectedItemB = res.selectedItem;

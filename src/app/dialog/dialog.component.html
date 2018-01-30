@@ -1,12 +1,38 @@
-<div fxLayout="row">
+<div fxLayout="row" fxLayoutAlign="center center">
   <h1>
-    Dialog Example
+    Pick List Example
   </h1>
 </div>
 
 <br>
 <div fxLayout="row">
   <div fxFlex="50" align="center">
+    <h2>Data A</h2>
+    <div align="left">
+        <div fxFlex="10"></div>
+        <button mat-button style="color: green" (click)="addMember('A')">
+            <mat-icon>add_circle</mat-icon>
+            <label>Add Member</label>
+        </button>
+    </div>
+
+    <br>
+    <div *ngFor="let itemA of dataA; let i = index">
+      <mat-form-field>
+        <span matPrefix>{{i +1}}. &nbsp;</span>
+        <input matInput placeholder="Label" [(ngModel)]="itemA.label">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Value" [(ngModel)]="itemA.value">
+      </mat-form-field>
+
+      <button mat-icon-button color="warn" (click)="removeMember('A', i)">
+          <mat-icon>cancel</mat-icon>
+      </button>
+    </div>
+
+    <br><br>
     <div>
         <button mat-raised-button (click)="openDialog('A')">Open dialog A</button>
     </div>
@@ -17,6 +43,32 @@
     </div>
   </div>
   <div fxFlex="50" align="center">
+      <h2>Data B</h2>
+      <div align="left">
+          <div fxFlex="10"></div>
+          <button mat-button style="color: green" (click)="addMember('B')">
+              <mat-icon>add_circle</mat-icon>
+              <label>Add Member</label>
+          </button>
+      </div>
+
+      <br>
+      <div *ngFor="let itemB of dataB; let i = index">
+        <mat-form-field>
+          <span matPrefix>{{i +1}}. &nbsp;</span>
+          <input matInput placeholder="Label" [(ngModel)]="itemB.label">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Value" [(ngModel)]="itemB.value">
+        </mat-form-field>
+
+        <button mat-icon-button color="warn" (click)="removeMember('B', i)">
+            <mat-icon>cancel</mat-icon>
+        </button>
+      </div>
+
+      <br><br>
     <div>
       <button mat-raised-button (click)="openDialog('B')">Open dialog B</button>
     </div>
