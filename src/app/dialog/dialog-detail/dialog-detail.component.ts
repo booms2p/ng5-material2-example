@@ -30,6 +30,8 @@ export class DialogDetailComponent implements OnInit {
         this.dataList.push(item);
       }
     }
+
+    this.selectedItem = this.data.oldValue;
   }
 
 }

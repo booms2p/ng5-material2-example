@@ -50,7 +50,8 @@ export class DialogComponent implements OnInit {
     const dialogRef  = this.dialog.open(DialogDetailComponent, {
       data: {
         type: type,
-        items: type === 'A' ? this.dataA : type === 'B' ? this.dataB : null
+        items: type === 'A' ? this.dataA : type === 'B' ? this.dataB : null,
+        oldValue: type === 'A' ? this.selectedItemA : type === 'B' ? this.selectedItemB : '',
       },
       disableClose: true
     });
