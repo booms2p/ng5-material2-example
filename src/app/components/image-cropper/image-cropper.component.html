@@ -1,3 +1,6 @@
 <p>
-  image-cropper works!
+    image-cropper works!
 </p>
+
+<ngx-image-editor [config]="config" (close)="close($event)" (file)="getEditedFile($event)">
+</ngx-image-editor>
