@@ -1,0 +1,6 @@
+.img-preview {
+    width: auto !important;
+    height: auto !important;
+    max-width: 800px !important;
+    max-height: 400px !important;
+}

@@ -1,6 +1,13 @@
 <p>
-    image-cropper works!
+    image-cropper works! {{imageFile}}
 </p>
 
-<ngx-image-editor [config]="config" (close)="close($event)" (file)="getEditedFile($event)">
+<input type="file" (change)="setImageUrl($event)">
+
+<ngx-image-editor *ngIf="imageFile" [config]="config" (close)="close($event)" (file)="getEditedFile($event)">
 </ngx-image-editor>
+
+<br>
+<div>
+    <img class="img-preview" *ngIf="cropFile" id="newImg" [src]="cropFile" />
+</div>

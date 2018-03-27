@@ -11,18 +11,28 @@ export class ImageCropperComponent implements OnInit {
 
   ngOnInit() {}
 
+  imageFile
+  cropFile
+
   public config: EditorOptions = {
     ImageName: 'Some image',
     AspectRatios: ['4:3', '16:9'],
-    ImageUrl:
-      'https://static.pexels.com/photos/248797/pexels-photo-248797.jpeg',
     ImageType: 'image/jpeg'
-  };
-
-  public close() {
-    console.log('this is close')
   }
 
-  public getEditedFile(file: File) {
-    console.log(file)}
+  public close(event) {
+    console.log(event)
+  }
+
+  public getEditedFile(file) {
+    console.log(file)
+    this.cropFile = file.src
+  }
+
+  setImageUrl(event) {
+    console.log(event)
+    this.imageFile = event.target.files[0]
+    console.log(this.imageFile)
+    this.config.File = this.imageFile
+  }
 }
