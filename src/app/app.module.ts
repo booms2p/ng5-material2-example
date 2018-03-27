@@ -17,12 +17,14 @@ import {MatIconModule} from '@angular/material/icon';
 import { DialogComponent } from './dialog/dialog.component';
 import { DialogDetailComponent } from './dialog/dialog-detail/dialog-detail.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ImageCropperComponent } from './components/image-cropper/image-cropper.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DialogComponent,
-    DialogDetailComponent
+    DialogDetailComponent,
+    ImageCropperComponent
   ],
   entryComponents: [
     DialogComponent,
