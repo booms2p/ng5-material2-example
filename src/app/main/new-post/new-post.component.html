@@ -1,3 +1,15 @@
 <p>
   new-post works!
 </p>
+<input type="file" (change)="setImageUrl($event)">
+
+<div>
+  <img id="postImage" [src]="imageFile || ''">
+</div>
+
+<button (click)="crop()">Crop</button>
+<br>
+
+<div>
+  <img id="croppedImg" [src]="croppedImg || ''">
+</div>
