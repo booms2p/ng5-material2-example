@@ -5,13 +5,13 @@
 </div>
 
 <br>
-<div fxLayout="row">
+<div fxLayout="row wrap" fxLayout.xs="column" fxFlexFill>
   <div fxFlex="50" align="center">
     <h2>Data A</h2>
     <div align="left">
       <div fxFlex="10"></div>
       <button mat-button style="color: green" (click)="addMember('A')">
-        <mat-icon>add_circle</mat-icon>
+        <!-- <mat-icon>add_circle</mat-icon> -->
         <label>Add Member</label>
       </button>
     </div>
@@ -28,8 +28,18 @@
       </mat-form-field>
 
       <button mat-icon-button color="warn" (click)="removeMember('A', i)">
-        <mat-icon>cancel</mat-icon>
+        <!-- <mat-icon>cancel</mat-icon> -->
       </button>
+    </div>
+
+    <br>
+    <div>
+      <button mat-raised-button style="background-color: #8dc63f; color: #ffff;" (click)="openDialog('A')">Open dialog A</button>
+    </div>
+    <br>
+    <br>
+    <div *ngIf="selectedItemA">
+      Selected: {{selectedItemA | json}}
     </div>
   </div>
   <div fxFlex="50" align="center">
@@ -37,7 +47,7 @@
     <div align="left">
       <div fxFlex="10"></div>
       <button mat-button style="color: green" (click)="addMember('B')">
-        <mat-icon>add_circle</mat-icon>
+        <!-- <mat-icon>add_circle</mat-icon> -->
         <label>Add Member</label>
       </button>
     </div>
@@ -54,33 +64,29 @@
       </mat-form-field>
 
       <button mat-icon-button color="warn" (click)="removeMember('B', i)">
-        <mat-icon>cancel</mat-icon>
+        <!-- <mat-icon>cancel</mat-icon> -->
       </button>
     </div>
+
+    <br>
+      <div>
+        <button mat-raised-button style="background-color: #8dc63f; color: #ffff;" (click)="openDialog('B')">Open dialog B</button>
+      </div>
+
+      <br>
+      <br>
+      <div *ngIf="selectedItemB">
+        Selected: {{selectedItemB | json}}
+      </div>
   </div>
 </div>
+
+<div fxLeyout="row" fxLayoutAlign="center center" >
+  <button mat-raised-button style="background-color: #8dc63f; color: #ffff;" (click)="openDialog('B')">Open PickList Dialog</button>
+</div>
+
 <br>
-<div fxLayout="row">
-  <div fxFlex="50" align="center">
-    <div>
-      <button mat-raised-button style="background-color: #8dc63f; color: #ffff;" (click)="openDialog('A')">Open dialog A</button>
-    </div>
 
-    <br>
-    <br>
-    <div *ngIf="selectedItemA">
-      Selected: {{selectedItemA | json}}
-    </div>
-  </div>
-  <div fxFlex="50" align="center">
-    <div>
-      <button mat-raised-button style="background-color: #8dc63f; color: #ffff;" (click)="openDialog('B')">Open dialog B</button>
-    </div>
-
-    <br>
-    <br>
-    <div *ngIf="selectedItemB">
-      Selected: {{selectedItemB | json}}
-    </div>
-  </div>
+<div fxLeyout="row" fxLayoutAlign="center center" >
+  <button mat-raised-button style="background-color: #8dc63f; color: #ffff;" (click)="genXlsx()">GEN XLSX</button>
 </div>

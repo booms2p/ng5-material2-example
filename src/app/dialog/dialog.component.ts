@@ -1,6 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DialogDetailComponent } from './dialog-detail/dialog-detail.component';
+import { DialogPicklistComponent } from './dialog-picklist/dialog-picklist.component';
+import * as fs from 'file-saver';
+
+import { Workbook } from 'exceljs';
 
 @Component({
   selector: 'app-dialog',
@@ -8,29 +12,26 @@ import { DialogDetailComponent } from './dialog-detail/dialog-detail.component';
   styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent implements OnInit {
-
   constructor(public dialog: MatDialog) {}
 
   selectedItemA = '';
   selectedItemB = '';
   itemType = '';
 
-
-
   dataA = [
-    {'label': 'item01', 'value': 'itm01'},
-    {'label': 'item02', 'value': 'itm02'},
-    {'label': 'item03', 'value': 'itm03'},
+    { label: 'item01', value: 'itm01' },
+    { label: 'item02', value: 'itm02' },
+    { label: 'item03', value: 'itm03' }
   ];
 
   dataB = [
-    {'label': 'B-01', 'value': 'B01'},
-    {'label': 'B-02', 'value': 'B02'},
-    {'label': 'B-03', 'value': 'B03'},
+    { label: 'B-01', value: 'B01' },
+    { label: 'B-02', value: 'B02' },
+    { label: 'B-03', value: 'B03' }
   ];
 
   addMember(type) {
-    const template = {'label': '', 'value': ''};
+    const template = { label: '', value: '' };
     if (type === 'A') {
       this.dataA.push(template);
     } else if (type === 'B') {
@@ -47,11 +48,18 @@ export class DialogComponent implements OnInit {
   }
 
   openDialog(type) {
-    const dialogRef  = this.dialog.open(DialogDetailComponent, {
+    const dialogRef = this.dialog.open(DialogDetailComponent, {
+      height: 'auto',
+      width: 'auto',
       data: {
         type: type,
         items: type === 'A' ? this.dataA : type === 'B' ? this.dataB : null,
-        oldValue: type === 'A' ? this.selectedItemA : type === 'B' ? this.selectedItemB : '',
+        oldValue:
+          type === 'A'
+            ? this.selectedItemA
+            : type === 'B'
+              ? this.selectedItemB
+              : ''
       },
       disableClose: true
     });
@@ -69,7 +77,29 @@ export class DialogComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  openPickListDialog(type) {
+    const dialogRef = this.dialog.open(DialogPicklistComponent, {
+      data: {},
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      console.log('The dialog was closed');
+    });
   }
 
+  ngOnInit() {}
+
+  genXlsx() {
+    const workbook = new Workbook();
+
+    workbook.addWorksheet('Boom Sheet', {
+      properties: { tabColor: { argb: 'ffffff' } }
+    });
+
+    workbook.xlsx.writeBuffer().then((data) => {
+      const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      fs.saveAs(blob, 'TEST_GEN_XLSL.xlsx');
+      });
+  }
 }

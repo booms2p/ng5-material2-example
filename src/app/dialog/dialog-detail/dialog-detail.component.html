@@ -6,5 +6,5 @@
   </mat-select>
 </mat-form-field>
 <br>
-<button mat-raised-button color="primary" (click)="confirmDialog(selectedItem);">OK</button>
+<button mat-raised-button color="primary" (click)="confirmDialog(selectedItem);" [disabled]="!selectedItem" >OK</button>
 <button mat-raised-button color="warn" (click)="confirmDialog();">Cancel</button>

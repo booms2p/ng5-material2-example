@@ -17,16 +17,19 @@ import {MatIconModule} from '@angular/material/icon';
 import { DialogComponent } from './dialog/dialog.component';
 import { DialogDetailComponent } from './dialog/dialog-detail/dialog-detail.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DialogPicklistComponent } from './dialog/dialog-picklist/dialog-picklist.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DialogComponent,
-    DialogDetailComponent
+    DialogDetailComponent,
+    DialogPicklistComponent
   ],
   entryComponents: [
     DialogComponent,
-    DialogDetailComponent
+    DialogDetailComponent,
+    DialogPicklistComponent
   ],
   imports: [
     BrowserModule,
