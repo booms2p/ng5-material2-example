@@ -97,9 +97,52 @@ export class DialogComponent implements OnInit {
       properties: { tabColor: { argb: 'ffffff' } }
     });
 
-    workbook.xlsx.writeBuffer().then((data) => {
-      const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-      fs.saveAs(blob, 'TEST_GEN_XLSL.xlsx');
+    const boomSheet = workbook.getWorksheet('Boom Sheet');
+
+    // boomSheet.getCell('A1').dataValidation = {
+    //   type: 'list',
+    //   allowBlank: true,
+    //   formulae: ['"One,Two,Three,Four"']
+    // };
+
+    // boomSheet.addRow({id: 2, name: 'Jane Doe', dob: new Date(1965,1,7)});
+
+    boomSheet.columns = [
+      {
+        header: 'Id',
+        key: 'id',
+        width: 10
+      },
+      { header: 'Name', key: 'name', width: 32 },
+      { header: 'D.O.B.', key: 'dob', width: 10, outlineLevel: 1 },
+      { header: 'TEST', key: 'column4', width: 10, outlineLevel: 1 }
+    ];
+
+    boomSheet.addRow({id: '1', name: 'John Doe', dob: new Date(1970,1,1), column4: '1234'});
+    boomSheet.addRow({id: '', name: 'John Doe', dob: new Date()});
+
+    boomSheet
+      .getColumn('A')
+      .eachCell({ includeEmpty: false }, function(cell, rowNumber) {
+        const cellName = `A${rowNumber.toString()}`;
+
+        boomSheet.getCell(cellName).dataValidation = {
+          type: 'list',
+          allowBlank: true,
+          formulae: ['"One,Two,Three,Four"']
+        };
+
+        boomSheet.getCell(cellName).font = {
+          color: { argb: 'FF4343' }
+        };
       });
+
+    workbook.xlsx.writeBuffer().then(data => {
+      const blob = new Blob([data], {
+        type:
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+      });
+      fs.saveAs(blob, 'TEST_GEN_XLSL.xlsx');
+    });
   }
 }
